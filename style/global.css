@@ -12,9 +12,11 @@
       --orange: #eb5f29;
 
       --gap-horizontal: 7vw;
-      --padding: 0 50px 60px 50px;
+      --padding: 150px 50px;
 
       --border-radius: 16px;
+
+      --box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 * {
@@ -37,7 +39,6 @@ footer {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: var(--noir);
 
       padding: 30px;
 }
@@ -53,7 +54,13 @@ header {
       transform: translateX(-50%);
 
       border-radius: var(--border-radius);
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+      /* glassmorphism effect */
+      background: rgba(17, 17, 17, 0.65);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(7.8px);
+      border: 1px solid rgba(17, 17, 17, 0.3);
 
       /* permet de rester au dessus de tout les autres éléments  */
       z-index: 1;
@@ -64,7 +71,7 @@ footer {
       flex-direction: column;
       gap: 20px;
 
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      background-color: var(--noir);
 
       span {
             color: var(--blanc);
@@ -97,6 +104,7 @@ nav {
 
       background-color: var(--orange);
       border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
 
       padding: 5px 8px;
 }
@@ -114,7 +122,59 @@ main {
       grid-row-gap: 50px;
 
       padding: var(--padding);
-      padding-top: 150px;
+}
+
+.container_bannière {
+      width: 100%;
+      min-height: 40vh;
+      grid-area: 1 / 1 / 2 / 4;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+
+      img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            object-fit: cover;
+
+            border-radius: var(--border-radius);
+
+            /* permet l'affichage derrière les éléments */
+            z-index: -2;
+      }
+
+      /* permet de rendre le fond plus opaque */
+      span {
+            width: 100%;
+            height: 100%;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            background-color: var(--noir);
+            opacity: 0.5;
+
+            border-radius: var(--border-radius);
+
+            z-index: -1;
+      }
+
+      a {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+
+            font-size: 10px;
+      }
 }
 
 .section_article {
@@ -127,13 +187,12 @@ aside {
 }
 
 #webographie {
+      grid-area: 3 / 1 / 4 / 4;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 30px;
-
-      padding: var(--padding);
 }
 
 .layout_paragraphe_images {
@@ -154,14 +213,6 @@ aside {
 
       margin-bottom: 20px;
 
-      .images_bannière {
-            width: 100%;
-      }
-
-      .credit_bannière {
-            width: 100%;
-      }
-
       img {
             width: 80%;
             max-height: 300px;
@@ -169,6 +220,8 @@ aside {
             object-fit: cover;
 
             border-radius: var(--border-radius);
+
+            box-shadow: var(--box-shadow);
       }
 
       a {
@@ -179,7 +232,6 @@ aside {
 }
 
 /* iframe */
-
 .video {
       width: 100%;
       height: 400px;
@@ -197,20 +249,28 @@ h3 {
 }
 
 h1 {
-      grid-area: 1 / 1 / 2 / 4;
+      width: fit-content;
+
+      padding: 20px;
+      margin: 0;
+
       text-align: center;
 
-      font-size: 36px;
-      color: var(--rouge);
+      font-size: 44px;
+      color: var(--orange);
+
+      background-color: var(--blanc);
+
+      border-radius: var(--border-radius);
 }
 
 h2 {
-      font-size: 26px;
-      color: var(--orange);
+      font-size: 30px;
+      color: var(--rouge);
 }
 
 h3 {
-      font-size: 22px;
+      font-size: 26px;
 }
 
 /* paragraphe */
@@ -228,7 +288,6 @@ p {
 }
 
 /* listes */
-
 ul {
       margin: 0;
 }
@@ -244,7 +303,6 @@ ol {
 }
 
 /* tableau */
-
 table {
       border-collapse: collapse;
       width: 100%;
@@ -275,7 +333,7 @@ tbody {
 
 @media screen and (max-width: 768px) {
       :root {
-            --padding: 0 20px 50px 20px;
+            --padding: 50px 20px;
       }
 
       header {
@@ -318,10 +376,20 @@ tbody {
 
 @media screen and (max-width: 580px) {
       header {
+            top: 85svh;
+
             a {
                   font-size: 10px;
                   display: none;
             }
+      }
+
+      h1 {
+            font-size: 34px;
+
+            background-color: transparent;
+
+            padding: 0;
       }
 
       .a_icons {
